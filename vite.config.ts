@@ -1,7 +1,7 @@
 import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode }: { mode: string }) => {
     const env = loadEnv(mode, '.', '');
     return {
       define: {
@@ -10,8 +10,9 @@ export default defineConfig(({ mode }) => {
       },
       resolve: {
         alias: {
-          '@': path.resolve(__dirname, '.'),
+          '@': path.resolve(path.dirname(import.meta.url), '.'),
         }
-      }
+      },
+      base: '/PlanNus/', // Replace 'PlanNus' with your repository name if different
     };
 });
